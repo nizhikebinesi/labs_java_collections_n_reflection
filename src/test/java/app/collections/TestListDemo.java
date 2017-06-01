@@ -1,4 +1,4 @@
-package app;
+package app.collections;
 
 public class TestListDemo {
 }

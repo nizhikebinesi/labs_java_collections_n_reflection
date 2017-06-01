@@ -1,5 +1,7 @@
 package app.collections.humans;
 
+import app.collections.humans.Human;
+
 /**
  * Created by 1 on 10.05.2017.
  */
