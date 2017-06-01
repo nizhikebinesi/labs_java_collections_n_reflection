@@ -38,5 +38,11 @@ public class Main {
 
         System.out.println();
         printCollectionToStdout(students);
+
+
+
+        //LinkedHashSet<Integer> tree = new LinkedHashSet<>();
+        //Class arr = tree.getClass().getSuperclass();
+        //System.out.println(Object.class.getSuperclass());
     }
 }
