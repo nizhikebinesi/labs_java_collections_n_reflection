@@ -1,12 +1,15 @@
 package app.reflection;
 
 import app.collections.humans.Human;
+import com.sun.istack.internal.NotNull;
 
 import java.lang.reflect.Executable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.*;
+
+import static app.collections.ListDemo.printCollectionToStdout;
 
 
 public class ReflectionDemo {
@@ -38,11 +41,11 @@ public class ReflectionDemo {
         //List<Method> list = new ArrayList<>();
         //object.getClass().getMethods();
         Method[] methods = object.getClass().getMethods();
-        List<String> list = new ArrayList<String>();
+        Set<String> set = new TreeSet<>();
         for (Method method : methods) {
-            list.add(method.getName());
+            set.add(method.getName());
         }
-        return list;
+        return new ArrayList<>(set);
     }
 
     /**
@@ -78,11 +81,21 @@ public class ReflectionDemo {
      * @return
      */
     private static boolean conditionForCountOfExecutableObjectsAndExecuteIt(Set<Class> set) {
-        return set.contains(Executable.class);
+        /*System.out.println("Some = " + (app.reflection.executable.Executable.class));
+
+        printCollectionToStdout(set);
+
+        System.out.println("cond = " + set.contains((app.reflection.executable.Executable.class)));
+        */
+        return set.contains((app.reflection.executable.Executable.class));
     }
 
     /**
-     *
+     * 14. Напишите метод, который для списка
+     * объектов находит его элементы, реализующие
+     * этот интерфейс, и выполняет в таких объектах
+     * метод execute(). Метод возвращает количество
+     * найденных элементов.
      * @param objects
      * @param <T>
      * @return
@@ -120,6 +133,19 @@ public class ReflectionDemo {
 
     private static Class voidClass = void.class;
 
+    /**
+     * 15. Для объекта получить список
+     * его геттеров и сеттеров (в виде списка строк).
+     * Геттером считаем открытый нестатический метод
+     * без параметров, значение которого не void, а
+     * имя начинается с get. Сеттером считаем открытый
+     * нестатический метод с одним параметром,
+     * с результатом типа void, а имя метода
+     * начинается с set.
+     * @param object
+     * @param <T>
+     * @return
+     */
     public static <T> List<String> getListOfGettersAndSetters(T object) {
         List<String> gettersAndSetters = new ArrayList<>();
         Method[] methods = object.getClass().getDeclaredMethods();
