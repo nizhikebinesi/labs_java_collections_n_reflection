@@ -80,7 +80,19 @@ public class Human {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Human)) {
+            return false;
+        }
+        if (!this.getName().equals(((Human) obj).getName())) {
+            return false;
+        }
+        return this.getAge() == ((Human) obj).getAge();
     }
 
     @Override
