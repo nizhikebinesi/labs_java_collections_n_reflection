@@ -67,8 +67,7 @@ public class TestListDemo {
                                         "John", "Son", "Smith"
                         )));
         int actual = countOfStringWhoseFirstSymbolIsEqualToReal(humans, ch);*/
-        ArrayList<String> strings = new ArrayList<>();
-        strings.addAll(Arrays.asList(createStringArray("First", "Second", "Ford", "Vannadiy")));
+        List<String> strings = Arrays.asList(new String[]{"First", "Second", "Ford", "Vannadiy"});
         int
                 actual = countOfStringWhoseFirstSymbolIsEqualToReal(strings, ch),
                 expected = 2;
