@@ -1,15 +1,9 @@
-import app.collections.ListDemo;
-import app.collections.humans.Human;
-import app.collections.humans.Student;
-
-import java.util.*;
-
-import static app.collections.ListDemo.*;
+import app.trees.binary_tree.BinarySearchTree;
 
 public class Main {
 
     public static void main(String[] args) {
-        ArrayList<Set<Integer>> integers = new ArrayList<>();
+        /*ArrayList<Set<Integer>> integers = new ArrayList<>();
         HashSet<Integer> set1 = new HashSet<>();
         set1.add(42);
         set1.add(13);
@@ -37,12 +31,22 @@ public class Main {
         Set<Student> students = setOfHumansWithIdInSet(map, set);
 
         System.out.println();
-        printCollectionToStdout(students);
+        printCollectionToStdout(students);*/
 
 
 
         //LinkedHashSet<Integer> tree = new LinkedHashSet<>();
         //Class arr = tree.getClass().getSuperclass();
         //System.out.println(Object.class.getSuperclass());
+
+
+        BinarySearchTree tree = new BinarySearchTree(21);
+        tree.insert(42);
+        tree.insert(12);
+        tree.insert(0);
+        tree.insert(13);
+        System.out.println(tree.inOrderTraversal());
+        System.out.println(tree.preOrderTraversal());
+        System.out.println(tree.postOrderTraversal());
     }
 }
