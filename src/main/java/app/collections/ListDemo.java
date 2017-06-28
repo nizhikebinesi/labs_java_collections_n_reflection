@@ -1,6 +1,7 @@
 package app.collections;
 
 import app.collections.humans.Human;
+import app.collections.humans.HumanComparator;
 import app.collections.humans.name.Name;
 import app.collections.humans.name.NameComparator;
 
@@ -8,6 +9,10 @@ import java.util.*;
 
 public class ListDemo {
     public static <T> void printCollectionToStdout(Collection<T> list) {
+        if (list == null) {
+            System.out.println(list);
+            return;
+        }
         for (T elem : list) {
             System.out.println(elem + "; ");
         }
@@ -20,6 +25,7 @@ public class ListDemo {
     ) {
         int counter = 0, id = 0;
         for (String string : strings) {
+            //if (Character.toLowerCase(string.charAt(id)) == Character.toLowerCase(symbol)) {
             if (string.charAt(id) == symbol) {
                 counter++;
             }
@@ -31,10 +37,13 @@ public class ListDemo {
     public static <T extends Human> int countOfEqualLastNames(
             List<T> humans,
             T human
-    ) {
+    ) /*throws NullPointerException*/ {
+        /*if (human.getLastName() == null) {
+            throw new NullPointerException("Last name of human = " + human + "; lastName = " + human.getLastName());
+        }*/
         int counter = 0;
         for (T anotherHuman : humans) {
-            if (anotherHuman.getLastName().equals(human.getLastName())) {
+            if (human.getLastName().equals(anotherHuman.getLastName())) {
                 counter++;
             }
         }
@@ -44,17 +53,17 @@ public class ListDemo {
     // 3
     public static <T extends Human> List<T> listWithoutOneHuman(
             List<T> list, T human
-    ) {
+    ) throws CloneNotSupportedException {
         List<T> newList = new ArrayList<T>();
         for (T elem : list) {
             if (!elem.equals(human)) {
-                newList.add(elem);
+                newList.add((T) elem.clone());
             }
         }
         return newList;
     }
 
-    // 4
+    // -
     public static int countOfNotIntersectedSets(
             List<Set<Integer>> integers,
             Set<Integer> integer
@@ -67,6 +76,33 @@ public class ListDemo {
             counter = ok ? + 0 : + 1;
         }
         return counter;
+    }
+
+    // 4
+    public static List<Set<Integer>> listOfNotIntersectedSets(
+            List<Set<Integer>> integers,
+            Set<Integer> integer
+    ) {
+        //LinkedList<Set<Integer>> removeCandidates = new LinkedList<>();
+        /*for (Set<Integer> set : integers) {
+            if (set.retainAll())
+        }*/
+        //System.out.println();
+        for (ListIterator<Set<Integer>> it = integers.listIterator(); it.hasNext(); ) {
+            Set<Integer> elem = new HashSet<>(it.next());
+            int size = elem.size();
+            elem.retainAll(integer);
+            boolean ok = /*elem.retainAll(integer) &&*/ elem.size() > 0 && elem.size() <= size;
+            //System.out.println("ok = " + ok);
+            if (ok) {
+                //System.out.println("Here");
+                it.remove();
+            }
+            //printCollectionToStdout(elem);
+        }
+        //System.out.println();*/
+        //integers.removeIf(elem -> elem.retainAll(integer));
+        return integers;
     }
 
     // 5
@@ -91,14 +127,17 @@ public class ListDemo {
     public static <T extends Human> List<T> listOfHumanByLexicographicalFIO(
             Set<T> set
     ) {
+        TreeSet<T> treeSet = new TreeSet<T>(new HumanComparator<T>());
+        treeSet.addAll(set);
         ArrayList<T> list = new ArrayList<>();
-        TreeMap<Name, T> sorting = new TreeMap<Name, T>(new NameComparator());
+        list.addAll(treeSet);
+       /*TreeMap<Name, T> sorting = new TreeMap<Name, T>(new NameComparator());
         for (T elem : set) {
             sorting.put(elem.getName(), elem);
         }
         for (Map.Entry<Name, T> entry : sorting.entrySet()) {
             list.add(entry.getValue());
-        }
+        }*/
         return list;
     }
 

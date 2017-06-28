@@ -2,7 +2,7 @@ package app.collections.humans;
 
 import app.collections.humans.name.Name;
 
-public class Human {
+public class Human implements Cloneable {
     private Name name;
     /*private String  firstName,
                     secondName,
@@ -80,7 +80,30 @@ public class Human {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Human)) {
+            return false;
+        }
+        if (!this.getName().equals(((Human) obj).getName())) {
+            return false;
+        }
+        return this.getAge() == ((Human) obj).getAge();
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Object object = new Human(name.getFirstName(), name.getLastName(), age);
+        if (name.getSecondName() != null || name.getSecondName() != "") {
+            ((Human) object).setSecondName(name.getSecondName());
+        }
+
+        return object;
+        //return super.clone();
     }
 
     @Override
