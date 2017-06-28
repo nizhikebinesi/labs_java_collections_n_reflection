@@ -35,6 +35,14 @@ public class Student extends Human {
     }
 
     @Override
+    public Object clone() throws CloneNotSupportedException {
+        Object object = super.clone();
+        ((Student)object).setFacultyName(facultyName);
+        return object;
+        //return super.clone();
+    }
+
+    @Override
     public String toString() {
         return super.toString() + (facultyName == null ? "" : "; facultyName = " + facultyName);
     }

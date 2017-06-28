@@ -298,4 +298,22 @@ public class TestPhoneBook {
 
         assertFalse(phoneBook.haveThisHumanThisNumber(roman, number1));
     }
+
+
+    @Test
+    public void testGetListOfHumansByPhoneNumber() {
+        PhoneBook phoneBook = new PhoneBook();
+
+        Human roman = new Human("Roman", "Fins", 17);
+        String
+                number1 = "123",
+                number2 = "427";
+        List<String> numberList = new ArrayList<>();
+        numberList.add(number1);
+        numberList.add(number2);
+
+        phoneBook.addPhoneNumbers(roman, numberList);
+
+        assertTrue(phoneBook.getListOfHumansByPhoneNumber(number1).contains(roman));
+    }
 }

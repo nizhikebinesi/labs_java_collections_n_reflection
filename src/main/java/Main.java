@@ -1,15 +1,20 @@
-import app.collections.ListDemo;
-import app.collections.humans.Human;
-import app.collections.humans.Student;
+import app.trees.binary_tree.AVLTree;
+import app.trees.binary_tree.BinarySearchTree;
+import app.trees.binary_tree.SplayTree;
 
-import java.util.*;
-
-import static app.collections.ListDemo.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
+    /*public static void f(List<Integer> list) {
+        list.add(42);
+    }*/
+
     public static void main(String[] args) {
-        ArrayList<Set<Integer>> integers = new ArrayList<>();
+        //System.arraycopy();
+
+        /*ArrayList<Set<Integer>> integers = new ArrayList<>();
         HashSet<Integer> set1 = new HashSet<>();
         set1.add(42);
         set1.add(13);
@@ -37,12 +42,64 @@ public class Main {
         Set<Student> students = setOfHumansWithIdInSet(map, set);
 
         System.out.println();
-        printCollectionToStdout(students);
+        printCollectionToStdout(students);*/
 
 
 
         //LinkedHashSet<Integer> tree = new LinkedHashSet<>();
         //Class arr = tree.getClass().getSuperclass();
         //System.out.println(Object.class.getSuperclass());
+
+        /*ArrayList<Integer> list = new ArrayList<>();
+        f(list);
+        System.out.println(list);
+        System.out.println();*/
+
+        BinarySearchTree tree = new BinarySearchTree(21);
+        tree.insert(42);
+        tree.insert(12);
+        tree.insert(0);
+        tree.insert(13);
+        tree.remove(13);
+        tree.remove(0);
+        tree.insert(42);
+        tree.insert(253);
+        tree.insert(100);
+        tree.insert(99);
+        tree.insert(22);
+        tree.insert(24);
+        tree.remove(21);
+        tree.insert(19);
+        System.out.println(tree.inOrderTraversal());
+        System.out.println(tree.preOrderTraversal());
+        System.out.println(tree.postOrderTraversal());
+        System.out.println(tree.getRoot());
+
+        System.out.println();
+
+        AVLTree avlTree = new AVLTree(42);
+        avlTree.insert(342);
+        avlTree.insert(12);
+        avlTree.insert(434);
+        avlTree.insert(787);
+        avlTree.insert(-2);
+        avlTree.insert(0);
+        System.out.println(avlTree.height());
+        System.out.println(avlTree.getRoot());
+        System.out.println(avlTree.preOrderTraversal());
+
+        System.out.println();
+
+        SplayTree splayTree = new SplayTree();
+        splayTree.insert(23);
+        splayTree.insert(11);
+        splayTree.insert(5);
+        splayTree.insert(8);
+        System.out.println(splayTree.find(11));
+        System.out.println(splayTree.getRoot());
+        System.out.println(splayTree.preOrderTraversal());
+        splayTree.find(23);
+        System.out.println(splayTree.preOrderTraversal());
+        System.out.println(splayTree.preOrderTraversal());
     }
 }

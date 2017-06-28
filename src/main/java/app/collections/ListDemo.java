@@ -53,11 +53,11 @@ public class ListDemo {
     // 3
     public static <T extends Human> List<T> listWithoutOneHuman(
             List<T> list, T human
-    ) {
+    ) throws CloneNotSupportedException {
         List<T> newList = new ArrayList<T>();
         for (T elem : list) {
             if (!elem.equals(human)) {
-                newList.add(elem);
+                newList.add((T) elem.clone());
             }
         }
         return newList;
@@ -131,7 +131,7 @@ public class ListDemo {
         treeSet.addAll(set);
         ArrayList<T> list = new ArrayList<>();
         list.addAll(treeSet);
-        /*TreeMap<Name, T> sorting = new TreeMap<Name, T>(new NameComparator());
+       /*TreeMap<Name, T> sorting = new TreeMap<Name, T>(new NameComparator());
         for (T elem : set) {
             sorting.put(elem.getName(), elem);
         }

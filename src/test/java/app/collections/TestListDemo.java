@@ -67,8 +67,7 @@ public class TestListDemo {
                                         "John", "Son", "Smith"
                         )));
         int actual = countOfStringWhoseFirstSymbolIsEqualToReal(humans, ch);*/
-        ArrayList<String> strings = new ArrayList<>();
-        strings.addAll(Arrays.asList(createStringArray("First", "Second", "Ford", "Vannadiy")));
+        List<String> strings = Arrays.asList(new String[]{"First", "Second", "Ford", "Vannadiy"});
         int
                 actual = countOfStringWhoseFirstSymbolIsEqualToReal(strings, ch),
                 expected = 2;
@@ -94,7 +93,7 @@ public class TestListDemo {
 
     // 3
     @Test
-    public void testListWithoutOneHuman() {
+    public void testListWithoutOneHuman() throws CloneNotSupportedException {
         Human human = new Human("Req", "Vasyly", "Vernik", 0);
         ArrayList<Human> humans = new ArrayList<>();
         humans.addAll(Arrays.asList(createHumansArray(

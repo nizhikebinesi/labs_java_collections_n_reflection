@@ -30,7 +30,7 @@ public class PhoneBook {
             phoneNumbers.addAll(Human2Number.get(human));
             if (!phoneNumbers.contains(phoneNumber)) {
                 phoneNumbers.add(phoneNumber);
-                Human2Number.remove(human);
+                //Human2Number.remove(human);
                 Human2Number.put(human, phoneNumbers);
             }
         } else {
@@ -42,7 +42,7 @@ public class PhoneBook {
             humans.addAll(Number2Human.get(phoneNumber));
             if (!humans.contains(human)) {
                 humans.add(human);
-                Number2Human.remove(phoneNumber);
+                //Number2Human.remove(phoneNumber);
                 Number2Human.put(phoneNumber, humans);
             }
         } else {
