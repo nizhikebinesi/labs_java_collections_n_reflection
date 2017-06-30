@@ -1,5 +1,7 @@
 package app.trees.binary_tree;
 
+import static app.trees.Helper.*;
+
 public class AVLTree extends BalancedTree {
     public AVLTree() {
     }
@@ -17,7 +19,7 @@ public class AVLTree extends BalancedTree {
     @Override
     protected Node insert(Node node, int key) {
         if (node == null) {
-            return new Node(key);
+            return (new Node(key));
         }
         if (node.getKey() > key) {
             node.setLeft(insert(node.getLeft(), key));
@@ -26,6 +28,7 @@ public class AVLTree extends BalancedTree {
         } else {
             return node;
         }
+        node.setHeight(max(height(node.getLeft()), height(node.getRight())) + 1);
         int balance = getBalance(node);
         if (balance > 1 && key < node.getLeft().getKey()) {
             return rightRotate(node);
@@ -39,6 +42,7 @@ public class AVLTree extends BalancedTree {
         if (balance < -1 && key < node.getRight().getKey()) {
             return rotateRightThenLeft(node);
         }
+        //node.setHeight(max(height(node.getLeft()), height(node.getRight())) + 1);
         return node;
     }
 
@@ -57,42 +61,49 @@ public class AVLTree extends BalancedTree {
         } else if (root.getKey() < key) {
             root.setRight(remove(root.getRight(), key));
         } else {
-            if (root.getCountOfDescendant() == 0) {
+            if (root.getLeft() == null || root.getRight() == null) {
                 Node tmp = null;
                 if (tmp == root.getLeft()) {
                     tmp = root.getRight();
                 } else {
                     tmp = root.getLeft();
                 }
-                if (tmp == null) {
+                root = tmp;
+                /*if (tmp == null) {
                     tmp = root;
                     root = null;
                 } else {
                     root = tmp;
-                }
+                }*/
             } else {
-                //Node tmp = minValueNode(root.getRight());
-                int val = minValueForRoot(root);
+                Node tmp = minValueNode(root.getRight());
+                root.setKey(tmp.getKey());
+                root.setRight(remove(root.getRight(), tmp.getKey()));
+                /*int val = minValueForRoot(root);
                 root.setKey(val);
-                root.setRight(remove(root.getRight(), val));
+                root.setHeight(0);
+                root.setRight(remove(root.getRight(), val));*/
             }
         }
         if (root == null) {
             return root;
         }
+        root.setHeight(max(height(root.getLeft()), height(root.getRight())) + 1);
         int balance = getBalance(root);
-        if (balance > 1 && key < root.getLeft().getKey()) {
+        if (balance > 1 && getBalance(root.getLeft()) >= 0) {
             return rightRotate(root);
         }
-        if (balance < -1 && key > root.getRight().getKey()) {
+        if (balance < -1 && getBalance(root.getRight()) <= 0) {
             return leftRotate(root);
         }
-        if (balance > 1 && key > root.getLeft().getKey()) {
+        if (balance > 1 && getBalance(root.getLeft()) < 0) {
             return rotateLeftThenRight(root);
         }
-        if (balance < -1 && key < root.getRight().getKey()) {
+        if (balance < -1 && getBalance(root.getRight()) > 0) {
             return rotateRightThenLeft(root);
         }
+
+        //root.setHeight(max(height(root.getLeft()), height(root.getRight())) + 1);
         return root;
     }
 }

@@ -41,7 +41,9 @@ public class SplayTree extends BalancedTree {
             root.getRight().setRight(splay(root.getRight().getLeft(), key));
             root = leftRotate(root);
         }
-        return root.getRight() != null ? root : leftRotate(root);
+        //if (root != null)
+        return root.getRight() != null ? root : /*left*/rightRotate(root);
+        //return null;
     }
 
     @Override

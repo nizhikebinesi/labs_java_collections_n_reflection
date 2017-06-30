@@ -4,9 +4,9 @@ import static app.trees.Constants.*;
 import static app.trees.Helper.*;
 
 public abstract class BinaryTree {
-    protected class Node {
+    public class Node {
         private int key, countOfDescendant;
-        private int height = 1;
+        private int height = 0;
         private boolean actualCountOfDescendant = true;
         private Node left, right;
 
@@ -31,7 +31,7 @@ public abstract class BinaryTree {
 
         public void setLeft(Node left) {
             this.left = left;
-            height = max(height(left), height(right)) + 1;
+            /*height = max(height(left), height(right)) + 1;*/
         }
 
         public Node getRight() {
@@ -40,7 +40,7 @@ public abstract class BinaryTree {
 
         public void setRight(Node right) {
             this.right = right;
-            height = max(height(left), height(right)) + 1;
+            /*height = max(height(left), height(right)) + 1;*/
         }
 
         public int getCountOfDescendant() {
@@ -52,6 +52,7 @@ public abstract class BinaryTree {
         }
 
         public int getHeight() {
+
             return height;
         }
 
@@ -126,7 +127,7 @@ public abstract class BinaryTree {
                 left = preOrderTraversal(node.getLeft()),
                 right = preOrderTraversal(node.getRight()),
                 middle = "" + node.getKey();
-        return middle + (left.equals(NULL) ? NULL : SPACE + left) + (right.equals(NULL) ? NULL : SPACE + right);
+        return middle + /*(left.equals(NULL) ? NULL :*/ SPACE + left/*)*/ + /*(right.equals(NULL) ? NULL :*/ SPACE + right/*)*/;
     }
 
     public String preOrderTraversal() {
@@ -170,7 +171,7 @@ public abstract class BinaryTree {
 
     protected static int height(Node root) {
         if (root == null) {
-            return 0;
+            return -1;
         }
         return root.getHeight();
     }

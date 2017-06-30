@@ -55,7 +55,69 @@ public class Main {
         System.out.println(list);
         System.out.println();*/
 
-        BinarySearchTree tree = new BinarySearchTree(21);
+
+        AVLTree tree = new AVLTree();
+        tree.insert( 9);
+        tree.insert( 5);
+        tree.insert( 10);
+        tree.insert( 0);
+        tree.insert( 6);
+        tree.insert( 11);
+        tree.insert( -1);
+        tree.insert( 1);
+        tree.insert( 2);
+
+        System.out.println(tree.preOrderTraversal());
+
+        tree.remove(10);
+        System.out.println();
+        System.out.println(tree.preOrderTraversal());
+
+        System.out.println("#################");
+        System.out.println();
+
+        AVLTree avlTree = new AVLTree();
+        avlTree.insert(10);
+        avlTree.insert(20);
+        avlTree.insert(30);
+        avlTree.insert(40);
+        avlTree.insert(50);
+        avlTree.insert(25);
+
+        avlTree.remove(10);
+        avlTree.remove(25);
+        avlTree.remove(50);
+
+        avlTree.insert(1);
+        System.out.println(avlTree.preOrderTraversal() + "\n");
+        avlTree.insert(2);
+
+        System.out.println(avlTree.preOrderTraversal() + "\n");
+
+        System.out.println("fffff");
+
+        System.out.println(avlTree.getRoot());
+        System.out.println(avlTree.getRoot().getHeight());
+        System.out.println(avlTree.getRoot().getLeft());
+        System.out.println(avlTree.getRoot().getLeft().getHeight());
+        System.out.println(avlTree.getRoot().getRight());
+        System.out.println(avlTree.getRoot().getRight().getHeight());
+        System.out.println();
+
+        avlTree = new AVLTree();
+        avlTree.insert(5);
+        avlTree.insert(1);
+        avlTree.insert(10);
+        avlTree.insert(7);
+        avlTree.insert(15);
+
+        System.out.println(avlTree.preOrderTraversal() + "\n");
+
+        avlTree.insert(6);
+
+        System.out.println(avlTree.preOrderTraversal() + "\n");
+
+        /*BinarySearchTree tree = new BinarySearchTree(21);
         tree.insert(42);
         tree.insert(12);
         tree.insert(0);
@@ -73,7 +135,7 @@ public class Main {
         System.out.println(tree.inOrderTraversal());
         System.out.println(tree.preOrderTraversal());
         System.out.println(tree.postOrderTraversal());
-        System.out.println(tree.getRoot());
+        System.out.println(tree.getRoot().getKey());
 
         System.out.println();
 
@@ -85,7 +147,7 @@ public class Main {
         avlTree.insert(-2);
         avlTree.insert(0);
         System.out.println(avlTree.height());
-        System.out.println(avlTree.getRoot());
+        System.out.println(avlTree.getRoot().getKey());
         System.out.println(avlTree.preOrderTraversal());
 
         System.out.println();
@@ -100,6 +162,6 @@ public class Main {
         System.out.println(splayTree.preOrderTraversal());
         splayTree.find(23);
         System.out.println(splayTree.preOrderTraversal());
-        System.out.println(splayTree.preOrderTraversal());
+        System.out.println(splayTree.preOrderTraversal());*/
     }
 }

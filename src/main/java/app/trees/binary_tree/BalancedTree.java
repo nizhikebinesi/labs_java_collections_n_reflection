@@ -1,5 +1,8 @@
 package app.trees.binary_tree;
 
+import app.trees.Helper;
+import static app.trees.Helper.*;
+
 public abstract class BalancedTree extends BinarySearchTree {
     public BalancedTree() {
     }
@@ -14,6 +17,8 @@ public abstract class BalancedTree extends BinarySearchTree {
                 t2 = x.getRight();
         x.setRight(y);
         y.setLeft(t2);
+        y.setHeight(max(height(y.getLeft()), height(y.getRight())) + 1);
+        x.setHeight(max(height(x.getLeft()), height(x.getRight())) + 1);
         return x;
     }
 
@@ -23,6 +28,8 @@ public abstract class BalancedTree extends BinarySearchTree {
                 t2 = y.getLeft();
         y.setLeft(x);
         x.setRight(t2);
+        y.setHeight(max(height(y.getLeft()), height(y.getRight())) + 1);
+        x.setHeight(max(height(x.getLeft()), height(x.getRight())) + 1);
         return y;
     }
 
@@ -43,11 +50,11 @@ public abstract class BalancedTree extends BinarySearchTree {
         return leftRotate(root);
     }
 
-    /*protected Node minValueNode(Node node) {
+    protected Node minValueNode(Node node) {
         Node current = node;
         while (current.getLeft() != null) {
             current = current.getLeft();
         }
         return current;
-    }*/
+    }
 }
